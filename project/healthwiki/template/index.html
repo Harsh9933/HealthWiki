@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEALTHWIKI</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+   <div class="mapdiv image-map">
+      <img class="w-895 h-745" src="/static/img/body.png" usemap="#image_map" />
+      <map name="image_map">
+        <area   
+          alt="shoulder"
+          title="shoulder"
+          class="group"
+          href="https://www.healthline.com/health/chronic-pain/shoulder-pain"
+          target="_blank"
+          coords="132,194 140,173 150,155 164,144 190,141 203,144 181,164 167,181 153,189 "
+          shape="polygon"
+          data-name="Shoulder"
+        />
+        <area
+          alt="right_shoulder"
+          title="right_shoulder"
+          class="group"
+          href="https://www.healthline.com/health/chronic-pain/shoulder-pain"
+          target="_blank"
+          coords="282,144 309,144 323,146 338,158 344,171 350,187 352,197 341,191 329,189 313,174 301,159 291,151 "
+          shape="polygon"
+          data-name="Shoulder"
+        />
+        <area
+          alt="chest"
+          title="chest"
+          class="group"
+          href="#"
+          target="_blank"
+          coords="208,224 222,214 238,211 242,215 249,212 267,215 277,223 275,232 273,248 271,267 271,294 267,328 256,349 245,363 232,356 218,335 213,308 211,271 "
+          shape="polygon"
+          data-name="Abs"
+        />
+        <area
+        alt="left_hand"
+        title="left_hand"
+        href="#"
+        target="_blank"
+        coords="112,205 123,183 129,171 146,163 162,164 169,176 165,191 154,206 144,218 132,230 119,232 112,223 111,215"
+        shape="polygon" 
+        data-name="Left ha"
+      />
+      <area
+        alt="right_hand"
+        title="right_hand"
+        href="#"
+        target="_blank"
+        coords="325,162 344,163 360,178 372,205 373,226 360,234 346,226 334,214 319,192 317,173 320,166"
+        shape="polygon"
+      />
+      <area
+        alt="left_chest"
+        title="left_chest"
+        href="https://www.healthline.com/health/chest-pain"
+        target="_blank"
+        coords="174,143 189,126 212,116 234,120 238,131 237,149 239,159 231,178 210,189 186,188 169,175 158,162 166,152"
+        shape="polygon"
+      />
+      <area
+        alt="right_chest"
+        title="right_chest"
+        href="https://www.healthline.com/health/chest-pain"
+        target="_blank"
+        coords="259,115 277,118 289,124 300,135 309,145 318,154 324,160 310,167 301,178 285,186 269,184 245,170 240,152 241,134 243,120 252,116"
+        shape="polygon"
+      />
+      <area
+        alt="left_abdomen"
+        title="left_abdomen"
+        href="#"
+        target="_blank"
+        coords="182,292 198,288 206,273 206,259 204,241 208,224 209,210 201,202 184,186 172,175 167,187 170,203 176,221 184,234 186,257"
+        shape="polygon"
+      />
+      <area
+        alt="right_abdomen"
+        title="right_abdomen"
+        href="#"
+        target="_blank"
+        coords="300,293 286,289 278,270 278,261 277,234 276,221 276,210 284,200 296,192 308,182 313,175 317,190 314,204 307,221 301,235 297,248 301,268 300,281 301,288"
+        shape="polygon"
+      />
+      <area
+        alt="left_leg"
+        title="left_leg"
+        href="#"
+        target="_blank"
+        coords="170,509 183,521 197,519 204,521 204,537 206,555 206,566 200,573 191,608 189,633 187,654 187,670 179,675 174,686 164,694 156,698 137,687 144,674 157,659 167,641 167,612 163,582 159,546 163,527"
+        shape="polygon"
+      />
+      <area
+        alt="right_leg"
+        title="right_leg"
+        href="#"
+        target="_blank"
+        coords="282,519 294,523 307,518 313,509 321,521 323,541 324,565 321,594 318,614 321,648 334,671 347,682 342,694 331,698 321,696 309,686 305,675 297,668 299,657 295,639 294,620 289,599 286,582 281,567 280,544"
+        shape="polygon"
+      />
+      <area
+        alt="right_upper_leg"
+        title="right_upper_leg"
+        href="https://www.healthline.com/health/pain-in-upper-thigh"
+        target="_blank"
+        coords="261,431 273,413 281,376 286,332 294,307 302,300 308,322 319,387 317,451 311,478 304,480 296,477 289,494 281,497 265,471 262,449"
+        shape="polygon"
+      />
+      <area
+        alt="left_upper_leg"
+        title="left_upper_leg"
+        href="https://www.healthline.com/health/pain-in-upper-thigh"
+        target="_blank"
+        coords="182,293 193,309 203,363 210,403 221,423 223,435 217,477 206,490 196,491 190,479 187,472 177,474 172,461 163,417 175,329"
+        shape="polygon"
+      />
+      <area
+        alt="left_lower_hand"
+        title="left_lower_hand"
+        href="https://www.healthline.com/health/arm-pain"
+        coords="61,324 74,293 96,252 108,240 112,258 126,262 136,258 124,284 107,308 84,324 76,335 67,335"
+        shape="polygon"
+      />
+      <area
+        alt="right_lower_hand"
+        title="right_lower_hand"
+        href="https://www.healthline.com/health/arm-pain"
+        coords="350,259 367,264 374,252 375,241 395,260 412,300 423,321 426,326 422,332 414,334 407,332 402,324 390,317 380,309 368,291"
+        shape="polygon"
+      />
+
+      
+      
+      </map>
+
+   </div>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction</title>
+
+
+    
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px; /* Adjust the width as needed */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    
+
+
+</head>
+<body>
+    <h1>Disease Predictor</h1>
+
+    {% if result %}
+        <h1>Predicted disease is {{result}}</h1>
+    {% endif %}
+
+    <form action="" method="post" >
+        {% csrf_token %}
+        <label for="language">Symptom 1:</label>
+            <select id="symptom1" name="symptom1"></select>
+
+        <label for="language">Symptom 2:</label>
+            <select id="symptom2" name="symptom2"></select>
+
+        <label for="language">Symptom 3:</label>
+            <select id="symptom3" name="symptom3"></select>
+        
+        <label for="language">Symptom 4:</label>
+            <select id="symptom4" name="symptom4"></select>
+    
+        <label for="language">Symptom 5:</label>
+            <select id="symptom5" name="symptom5"></select>
+
+        <label for="language">Symptom 6:</label>
+            <select id="symptom6" name="symptom6"></select>
+
+
+        <input type="submit">
+    </form>
+
+    <script>
+        // Function to populate dropdown with symptoms and values
+        function populateDropdown(selectId) {
+            var symptomsData = [
+                { name: "None", value: 0 },
+                { name: "Itching", value: 1 },
+                { name: "Skin Rash", value: 3 },
+                { name: "Nodal Skin Eruptions", value: 4 },
+                { name: "Continuous Sneezing", value: 4 },
+                { name: "Shivering", value: 5 },
+                { name: "Chills", value: 3 },
+                { name: "Joint Pain", value: 3 },
+                { name: "Stomach Pain", value: 5 },
+                { name: "Acidity", value: 3 },
+                { name: "Ulcers on Tongue", value: 4 },
+                { name: "Muscle Wasting", value: 3 },
+                { name: "Vomiting", value: 5 },
+                { name: "Burning Micturition", value: 6 },
+                { name: "Spotting Urination", value: 6 },
+                { name: "Fatigue", value: 4 },
+                { name: "Weight Gain", value: 3 },
+                { name: "Anxiety", value: 4 },
+                { name: "Cold Hands and Feet", value: 5 },
+                { name: "Mood Swings", value: 3 },
+                { name: "Weight Loss", value: 3 },
+                { name: "Restlessness", value: 5 },
+                { name: "Lethargy", value: 2 },
+                { name: "Patches in Throat", value: 6 },
+                { name: "Irregular Sugar Level", value: 5 },
+                { name: "Cough", value: 4 },
+                { name: "High Fever", value: 7 },
+                { name: "Sunken Eyes", value: 3 },
+                { name: "Breathlessness", value: 4 },
+                { name: "Sweating", value: 3 },
+                { name: "Dehydration", value: 4 },
+                { name: "Indigestion", value: 5 },
+                { name: "Headache", value: 3 },
+                { name: "Yellowish Skin", value: 3 },
+                { name: "Dark Urine", value: 4 },
+                { name: "Nausea", value: 5 },
+                { name: "Loss of Appetite", value: 4 },
+                { name: "Pain Behind the Eyes", value: 4 },
+                { name: "Back Pain", value: 3 },
+                { name: "Constipation", value: 4 },
+                { name: "Abdominal Pain", value: 4 },
+                { name: "Diarrhoea", value: 6 },
+                { name: "Mild Fever", value: 5 },
+                { name: "Yellow Urine", value: 4 },
+                { name: "Yellowing of Eyes", value: 4 },
+                { name: "Acute Liver Failure", value: 6 },
+                { name: "Fluid Overload", value: 6 },
+                { name: "Swelling of Stomach", value: 7 },
+                { name: "Swelled Lymph Nodes", value: 6 },
+                { name: "Malaise", value: 6 },
+                { name: "Blurred and Distorted Vision", value: 5 },
+                { name: "Phlegm", value: 5 },
+                { name: "Throat Irritation", value: 4 },
+                { name: "Redness of Eyes", value: 5 },
+                { name: "Sinus Pressure", value: 4 },
+                { name: "Runny Nose", value: 5 },
+                { name: "Congestion", value: 5 },
+                { name: "Chest Pain", value: 7 },
+                { name: "Weakness in Limbs", value: 7 },
+                { name: "Fast Heart Rate", value: 5 },
+                { name: "Pain During Bowel Movements", value: 5 },
+                { name: "Pain in Anal Region", value: 6 },
+                { name: "Bloody Stool", value: 5 },
+                { name: "Irritation in Anus", value: 6 },
+                { name: "Neck Pain", value: 5 },
+                { name: "Dizziness", value: 4 },
+                { name: "Cramps", value: 4 },
+                { name: "Bruising", value: 4 },
+                { name: "Obesity", value: 4 },
+                { name: "Swollen Legs", value: 5 },
+                { name: "Swollen Blood Vessels", value: 5 },
+                { name: "Puffy Face and Eyes", value: 5 },
+                { name: "Enlarged Thyroid", value: 6 },
+                { name: "Brittle Nails", value: 5 },
+                { name: "Swollen Extremities", value: 5 },
+                { name: "Excessive Hunger", value: 4 },
+                { name: "Extra Marital Contacts", value: 5 },
+                { name: "Drying and Tingling Lips", value: 4 },
+                { name: "Slurred Speech", value: 4 },
+                { name: "Knee Pain", value: 3 },
+                { name: "Hip Joint Pain", value: 2 },
+                { name: "Muscle Weakness", value: 2 },
+                { name: "Stiff Neck", value: 4 },
+                { name: "Swelling Joints", value: 5 },
+                { name: "Movement Stiffness", value: 5 },
+                { name: "Spinning Movements", value: 6 },
+                { name: "Loss of Balance", value: 4 },
+                { name: "Unsteadiness", value: 4 },
+                { name: "Weakness of One Body Side", value: 4 },
+                { name: "Loss of Smell", value: 3 },
+                { name: "Bladder Discomfort", value: 4 },
+                { name: "Foul Smell of Urine", value: 5 },
+                { name: "Continuous Feel of Urine", value: 6 },
+                { name: "Passage of Gases", value: 5 },
+                { name: "Internal Itching", value: 4 },
+                { name: "Toxic Look (Typhos)", value: 5 },
+                { name: "Depression", value: 3 },
+                { name: "Irritability", value: 2 },
+                { name: "Muscle Pain", value: 2 },
+                { name: "Altered Sensorium", value: 2 },
+                { name: "Red Spots Over Body", value: 3 },
+                { name: "Belly Pain", value: 4 },
+                { name: "Abnormal Menstruation", value: 6 },
+                { name: "Dischromic Patches", value: 6 },
+                { name: "Watering from Eyes", value: 4 },
+                { name: "Increased Appetite", value: 5 },
+                { name: "Polyuria", value: 4 },
+                { name: "Family History", value: 5 },
+                { name: "Mucoid Sputum", value: 4 },
+                { name: "Rusty Sputum", value: 4 },
+                { name: "Lack of Concentration", value: 3 },
+                { name: "Visual Disturbances", value: 3 },
+                { name: "Receiving Blood Transfusion", value: 5 },
+                { name: "Receiving Unsterile Injections", value: 2 },
+                { name: "Coma", value: 7 },
+                { name: "Stomach Bleeding", value: 6 },
+                { name: "Distention of Abdomen", value: 4 },
+                { name: "History of Alcohol Consumption", value: 5 },
+                { name: "Fluid Overload", value: 4 },
+                { name: "Blood in Sputum", value: 5 },
+                { name: "Prominent Veins on Calf", value: 6 },
+                { name: "Palpitations", value: 4 },
+                { name: "Painful Walking", value: 2 },
+                { name: "Pus Filled Pimples", value: 2 },
+                { name: "Blackheads", value: 2 },
+                { name: "Scurring", value: 2 },
+                { name: "Skin Peeling", value: 3 },
+                { name: "Silver Like Dusting", value: 2 },
+                { name: "Small Dents in Nails", value: 2 },
+                { name: "Inflammatory Nails", value: 2 },
+                { name: "Blister", value: 4 },
+                { name: "Red Sore Around Nose", value: 2 },
+                { name: "Yellow Crust Ooze", value: 3 },
+                { name: "Prognosis", value: 5 }
+            ];
+    
+            var dropdown = document.getElementById(selectId);
+    
+            for (var i = 0; i < symptomsData.length; i++) {
+                var option = document.createElement("option");
+                option.value = symptomsData[i].value;
+                option.text = symptomsData[i].name;
+                dropdown.add(option);
+            }
+        }
+    
+            // Populate each dropdown
+            populateDropdown("symptom1");
+            populateDropdown("symptom2");
+            populateDropdown("symptom3");
+            populateDropdown("symptom4");
+            populateDropdown("symptom5");
+            populateDropdown("symptom6");
+        </script>
+
+
+
+</body>
+</html>
